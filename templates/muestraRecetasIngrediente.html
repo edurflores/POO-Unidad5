@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recetas por ingrediente</title>
+</head>
+<body>
+    <h1>Recetas por ingrediente</h1>
+    <div>Recetas que contienen el ingrediente {{ ingrediente }}.</div>
+    <table id="tablarecetasingrediente">
+        <thead>
+            <tr>
+                <th>Nombre receta</th>
+                <th>Tiempo (minutos)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for receta in recetas %}
+            <tr>
+                <td>{{ receta.nombre }}</td>
+                <td>{{ receta.tiempo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>  
+    </table>
+</body>
+</html>

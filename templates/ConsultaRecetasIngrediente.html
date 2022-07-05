@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta recetas por ingrediente</title>
+</head>
+<body>
+    <h1>Consulta de recetas por tiempo de elaboracion</h1>
+    <div>Por favor, ingresa el ingrediente a buscar.</div>
+    <form action="{{ request.path }}" method="post">
+        <input type="text" name="ingrediente">
+        <input type="submit" value="Buscar">
+    </form>
+</body>
+</html>

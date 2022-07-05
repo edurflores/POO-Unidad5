@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agregar ingredientes</title>
+    </head>
+    <body>
+        <h1>Agregue sus ingredientes</h1>
+        <div>Por favor {{ receta.usuario.nombre }} agrega los {{ cant }} ingredientes que usaste en tu receta {{ receta.nombre }}</div>
+        <label for="ingredientes">Ingredientes</label><br>
+        <form action="{{ url_for('agregarIngredientes') }}" method="post">
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Unidad de medida</th>
+                </tr>
+                {% for i in range(cant) %}
+                <tr>
+                    <td><input type="text" name="nombreing[]"></td>
+                    <td><input type="number" name="cant[]"></td>
+                    <td><input type="text" name="unimedida[]"></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <input type="hidden" name="totingr" value="{{ cant }}">
+            <input type="hidden" name="idreceta" value="{{ receta.id }}">
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>

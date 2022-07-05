@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Visor receta</title>
+    </head>
+    <body>
+        <h1>Visor de receta</h1>
+        <table>
+            <tr>
+                <th>Nombre de receta</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Me Gusta</th>
+            </tr>
+            <tr>
+                <th>{{ receta.nombre }}</th>
+                <th>{{ receta.usuario.nombre }}</th>
+                <th>{{ receta.fecha }}</th>
+                <th>{{ receta.cantidadmegusta }}</th>
+            </tr>
+        </table>
+        <h2>Elaboracion</h2>
+        <div>
+            {{ receta.elaboracion }}
+        </div>
+
+        <h3>Ingredientes usados</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Unidad de medida</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </body>
+</html>

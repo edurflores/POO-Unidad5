@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Compartir receta</title>
+    </head>
+
+    <body>
+        <h1>¡Comparte tu receta!</h1>
+        <div>{{ usuario.nombre }}, por favor ingresa los datos de tu receta.</div>
+        <div>
+            <form action="{{ request.path }}" method="post">
+                <label for="nombrereceta">Nombre de la receta</label><br>
+                <input type="text" id="nombreceta" name="nomreceta"><br>
+                <label for="tiemporeceta">Tiempo estimado</label><br>
+                <input type="number" id="tiemporece" name="tiemporeceta" placeholder="Minutos"><br>
+                <label for="proceso">Elaboración</label><br>
+                <textarea name="elaboracion" placeholder="Ingresa tu receta" cols="60" rows="8"></textarea><br><br>
+                <label for="">Cantidad de ingredientes</label>
+                <input type="number" name="cantingr"><div>Máximo: 10 ingredientes</div>
+                <input type="submit" value="Guardar receta">
+            </form>
+        </div>
+    </body>
+</html>
