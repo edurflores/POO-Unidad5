@@ -71,7 +71,7 @@ def agregarIngredientes():
 @app.route('/ranking')
 def ranking():
     recetasdb = Receta.query.all()
-    recetasdb.sort()
+    recetasdb.sort(reverse=True)
     return render_template('ranking.html',recetas=recetasdb)
 
 @app.route('/ConsultaRecetasTiempo', methods= ['POST','GET'])
@@ -100,6 +100,20 @@ def ConsultaRecetasIngrediente():
         return render_template('muestraRecetasIngrediente.html',ingrediente=ingrediente,recetas=listaRecetasIngr)
     else:
         return render_template('ConsultaRecetasIngrediente.html')
+
+@app.route('/visorReceta/<int:recetaId>')
+def visorReceta(recetaId):
+    receta = Receta.query.filter_by(id=recetaId).first()
+    ingredienteslista = Ingrediente.query.filter_by(recetaid=recetaId).all()
+    return render_template('visorReceta.html',receta=receta,ingredientes=ingredienteslista,idusuarioLogeado=int(session['idusuario']))
+    ### No puede dar me gustaa su propia receta, comprueba usuario logeado con el autor de la receta
+
+@app.route('/meGustaReceta/<int:recetaId>')
+def meGustaReceta(recetaId):
+    receta = Receta.query.filter_by(id=recetaId).first()
+    receta.cantidadmegusta += 1 ### Actualiza
+    db.session.commit()
+    return render_template('meGustaReceta.html',usuarioLogeado=Usuario.query.filter_by(id=int(session['idusuario'])).first(),recetaActual=receta)
 
 if __name__ == '__main__':
     db.create_all()
