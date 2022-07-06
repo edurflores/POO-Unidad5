@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Recetas por tiempo</title>
-</head>
-<body>
+{% extends "baseTemplate.html" %}
+{% block title %}Recetas por tiempo{% endblock %}
+{% block content %}
+    
     <h1>Recetas por tiempo</h1>
     <div>Recetas con un tiempo menor a {{ tiempo }} minutos</div>
     <table id="tablarecetastiempo">
@@ -23,5 +20,5 @@
             {% endfor %}
         </tbody>  
     </table>
-</body>
-</html>
+
+{% endblock %}

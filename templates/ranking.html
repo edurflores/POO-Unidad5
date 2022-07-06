@@ -1,38 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Ranking de recetas</title>
-        <style>
-            #tablaranking{
-                    display: table;
-                    border-collapse: separate;
-                    box-sizing: border-box;
-                    text-indent: initial;
-                    border-spacing: 2px;
-                    border-color: grey;
-                }
-        </style>
-    </head>
-    <body>
-        <h1>Ranking de recetas</h1>
-            <table id="tablaranking">
-                <thead>
-                    <tr>
-                        <th>Nombre receta</th>
-                        <th>Usuario</th>
-                        <th>Cantidad de Me Gusta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for receta in recetas %}
-                    <tr>
-                        <td>{{ receta.nombre }}</td>
-                        <td>{{ receta.usuario.nombre }}</td>
-                        <td>{{ receta.cantidadmegusta }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>  
-            </table>
-    </body>
-</html>
+{% extends "baseTemplate.html" %}
+{% block title %}Ranking de recetas{% endblock %}
+{% block content %}
+
+    <h1>Ranking de recetas</h1>
+        <table id="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre receta</th>
+                    <th>Usuario</th>
+                    <th>Cantidad de Me Gusta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for receta in recetas %}
+                <tr>
+                    <td>{{ receta.nombre }}</td>
+                    <td>{{ receta.usuario.nombre }}</td>
+                    <td>{{ receta.cantidadmegusta }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>  
+        </table>
+
+{% endblock %}

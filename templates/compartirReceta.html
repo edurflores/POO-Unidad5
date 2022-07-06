@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Compartir receta</title>
-    </head>
+{% extends "baseTemplate.html" %}
+{% block title %}Compartir receta{% endblock %}
+{% block content %}
 
-    <body>
-        <h1>¡Comparte tu receta!</h1>
-        <div>{{ usuario.nombre }}, por favor ingresa los datos de tu receta.</div>
+    <h1>¡Comparte tu receta!</h1>
+    <div>{{ usuario.nombre }}, por favor ingresa los datos de tu receta.</div>
         <div>
             <form action="{{ request.path }}" method="post">
                 <label for="nombrereceta">Nombre de la receta</label><br>
@@ -21,5 +17,5 @@
                 <input type="submit" value="Guardar receta">
             </form>
         </div>
-    </body>
-</html>
+
+{% endblock %}

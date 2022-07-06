@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Bienvenida</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/estiloindex.css') }}">
     </head>
     <body>
-        <h1>Hola mundo!</h1>
         <img src="static/img/logocolor.png" ant="Logo Sancho Panza">
         <h2>Concurso de recetas 2022</h2>
 
@@ -15,7 +15,7 @@
             <input type="text" id="mail" name="email"><br>
             <label for="pass">Contraseña</label><br>
             <input type="password" id="pass" name="contra"><br>
-            <input type="submit" value="Ingresar">
+            <input type="submit" value="Ingresar" id="botoningreso">
         </form>
     </body>
 </html>

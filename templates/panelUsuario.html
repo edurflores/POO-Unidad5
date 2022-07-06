@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Panel de usuario</title>
-    </head>
-    <body>
-        <h1>¡Bienvenido!</h1>
-        <div>Bienvenido/a {{ nombre }}</div>
-        <h3>Panel de usuario</h3>
-        <div>
-            <ul>
-                <li><a href="{{ url_for('compartirReceta') }}">Compartir receta</a></li>
-                <li><a href="{{ url_for('ranking') }}">Consultar ranking</a></li>
-                <li><a href="{{ url_for('ConsultaRecetasTiempo') }}">Consultar recetas por tiempo de elaboracion</a></li>
-                <li><a href="{{ url_for('ConsultaRecetasIngrediente') }}">Consultar recetas por ingrediente</a></li>
-            </ul>
-        </div>
-        <div>
-            {{  usuario.__str__() }}
-        </div>
-    </body>
-</html>
+{% extends "baseTemplate.html" %}
+{% block title %}Panel de usuario{% endblock %}
+{% block content %}
+
+    <h1>¡Bienvenido!</h1>
+    <img src="static/img/soracooking.jpg" ant="Sora-chan preparando">
+    <div>Bienvenido/a {{ nombre }}. Por favor selecciona una opcion en el siguiente panel.</div>
+    <h3>Panel de usuario</h3>
+    <div>
+        <ul>
+            <li><a href="{{ url_for('compartirReceta') }}">Compartir receta</a></li>
+            <li><a href="{{ url_for('ranking') }}">Consultar ranking</a></li>
+            <li><a href="{{ url_for('ConsultaRecetasTiempo') }}">Consultar recetas por tiempo de elaboracion</a></li>
+            <li><a href="{{ url_for('ConsultaRecetasIngrediente') }}">Consultar recetas por ingrediente</a></li>
+        </ul>
+    </div>
+
+{% endblock %}

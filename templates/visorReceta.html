@@ -1,45 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Visor receta</title>
-    </head>
-    <body>
-        <h1>Visor de receta</h1>
-        <div>
-            Nombre de receta: {{ receta.nombre }}<br>
-            Usuario: {{ receta.usuario.nombre }}<br>
-            Fecha: {{ receta.fecha }}<br>
-            Me Gusta: {{ receta.cantidadmegusta }}<br>
-        </div>
-        <h2>Elaboracion</h2>
-        <div>
-            {{ receta.elaboracion }}
-        </div>
+{% extends "baseTemplate.html" %}
+{% block title %}Visor receta{% endblock %}
+{% block content %}
+        
+    <h1>Visor de receta</h1>
+    <div>
+        Nombre de receta: {{ receta.nombre }}<br>
+        Usuario: {{ receta.usuario.nombre }}<br>
+        Fecha: {{ receta.fecha }}<br>
+        Me Gusta: {{ receta.cantidadmegusta }}<br>
+    </div>
+    <h2>Elaboracion</h2>
+    <div id="elaboracion">
+        {{ receta.elaboracion }}
+    </div>
 
-        <h3>Ingredientes usados</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Unidad de medida</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for ingrediente in ingredientes %}
-                <tr>
-                    <th>{{ ingrediente.nombre }}</th>
-                    <th>{{ ingrediente.cantidad }}</th>
-                    <th>{{ ingrediente.unidad }}</th>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% if idusuarioLogeado != receta.usuario.id %}
-            <a href="/meGustaReceta/{{ receta.id }}">Me Gusta</a>
-            {% else %}
-            <div>No puedes dar me gusta a tu propia receta</div>
-        {% endif %}
-    </body>
-</html>
+    <h3>Ingredientes usados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Unidad de medida</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingrediente in ingredientes %}
+            <tr>
+                <th>{{ ingrediente.nombre }}</th>
+                <th>{{ ingrediente.cantidad }}</th>
+                <th>{{ ingrediente.unidad }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if idusuarioLogeado != receta.usuario.id %}
+        <a href="/meGustaReceta/{{ receta.id }}">Me Gusta</a>
+    {% else %}
+        <div>No puedes dar me gusta a tu propia receta</div>
+    {% endif %}
+
+{% endblock %}

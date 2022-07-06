@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Recetas por ingrediente</title>
-</head>
-<body>
+{% extends "baseTemplate.html" %}
+{% block title %}Recetas por ingrediente{% endblock %}
+{% block content %}
+    
     <h1>Recetas por ingrediente</h1>
     <div>Recetas que contienen el ingrediente {{ ingrediente }}.</div>
     <table id="tablarecetasingrediente">
@@ -23,5 +20,5 @@
             {% endfor %}
         </tbody>  
     </table>
-</body>
-</html>
+
+{% endblock %}

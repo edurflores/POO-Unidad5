@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    {% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/estilobase.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    <h4><a href="{{ url_for('inicio') }}">Volver a Inicio</a></h4><br><br>
+    <div id="footer">
+    Restaurante Sancho Panza - Concurso de Recetas 2022 - Eduardo Flores.
+    </div>
+  </body>
+</html>

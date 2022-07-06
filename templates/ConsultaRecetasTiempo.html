@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Consulta recetas por tiempo</title>
-</head>
-<body>
+{% extends "baseTemplate.html" %}
+{% block title %}Consulta recetas por tiempo{% endblock %}
+{% block content %}
+
     <h1>Consulta de recetas por tiempo de elaboracion</h1>
     <div>Por favor, ingresa el tiempo en minutos.</div>
     <form action="{{ request.path }}" method="post">
         <input type="number" name="tiempo">
         <input type="submit" value="Buscar">
     </form>
-</body>
-</html>
+
+{% endblock %}

@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Consulta recetas por ingrediente</title>
-</head>
-<body>
+{% extends "baseTemplate.html" %}
+{% block title %}Consulta recetas por ingrediente{% endblock %}
+{% block content %}
+
     <h1>Consulta de recetas por ingrediente</h1>
     <div>Por favor, ingresa el ingrediente a buscar.</div>
     <form action="{{ request.path }}" method="post">
         <input type="text" name="ingrediente">
         <input type="submit" value="Buscar">
     </form>
-</body>
-</html>
+
+{% endblock %}
