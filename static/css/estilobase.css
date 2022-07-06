@@ -1,0 +1,40 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: bisque;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    height: auto;
+    width: 500px;
+    margin-bottom: 15px;
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 4px;
+    border-color: grey;
+}
+
+#elaboracion {
+    flex: 1;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 400px;
+    flex-wrap: wrap;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
