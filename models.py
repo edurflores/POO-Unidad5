@@ -12,10 +12,6 @@ class Usuario(db.Model):
 
     recetas = db.relationship('Receta', backref='usuario', cascade="all, delete-orphan")
 
-    def __str__(self):
-        cadena = 'Nombre: ' + self.nombre + ' Correo: ' + self.correo
-        return cadena
-
 class Receta(db.Model):
     __tablename__ = 'receta'
     id = db.Column(db.Integer, primary_key=True)

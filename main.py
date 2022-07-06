@@ -31,18 +31,21 @@ def inicio():
     else:
         return render_template('index.html')
 
-@app.route('/compartirReceta',methods= ['POST','GET']) ### Forma de resolverlo: Pedir el mail para de ahi sacar el usuario con la db, y la receta ya la tengo, buscarla en la db y ponerle el id a los ingredientes.
+@app.route('/compartirReceta',methods= ['POST','GET'])
 def compartirReceta():
     if request.method == 'POST':
         if request.form['nomreceta'] and request.form['tiemporeceta'] and request.form['elaboracion']:
             nuevaReceta = Receta(nombre=request.form['nomreceta'], tiempo=int(request.form['tiemporeceta']),
                                 elaboracion=request.form['elaboracion'], cantidadmegusta=0,
-                                fecha=datetime.date.today(), usuarioid=int(session['idusuario'])) ### Completar
-            db.session.add(nuevaReceta)
-            db.session.commit()
+                                fecha=datetime.date.today(), usuarioid=int(session['idusuario']))
             cantingredientes = int(request.form['cantingr'])
-            recetadb = Receta.query.filter_by(nombre=request.form['nomreceta']).first()
-            return render_template('/agregarIngredientes.html',receta=recetadb,cant=cantingredientes) ### Buscar la id de la receta recien creada
+            if cantingredientes > 10:
+                return render_template('error.html', error='Hay mas de 10 ingredientes. La receta no se guardara.')
+            else:
+                db.session.add(nuevaReceta)
+                db.session.commit()
+                recetadb = Receta.query.filter_by(nombre=request.form['nomreceta']).first()
+                return render_template('/agregarIngredientes.html',receta=recetadb,cant=cantingredientes) ### Buscar la id de la receta recien creada
         else:
             return render_template('/error.html',error='No ingreso los datos de la receta.')
     else:
@@ -62,7 +65,7 @@ def agregarIngredientes():
                         nuevoIngrediente = Ingrediente(nombre=nombreing[i],cantidad=int(canting[i]),unidad=unimed[i],recetaid=request.form['idreceta'])
                         db.session.add(nuevoIngrediente)
                         db.session.commit()
-                return render_template('panelUsuario.html')
+                return render_template('/aviso.html',aviso='Se ha guardado tu receta con sus ingredientes. ¡Gracias!')
         else:
             return render_template('/error.html',error='No ingreso los datos de los ingredientes.')
     else:
@@ -72,7 +75,10 @@ def agregarIngredientes():
 def ranking():
     recetasdb = Receta.query.all()
     recetasdb.sort(reverse=True)
-    return render_template('ranking.html',recetas=recetasdb)
+    cincoRecetas = []
+    for i in range(5):
+        cincoRecetas.append(recetasdb[i])
+    return render_template('ranking.html',recetas=cincoRecetas)
 
 @app.route('/ConsultaRecetasTiempo', methods= ['POST','GET'])
 def ConsultaRecetasTiempo():
@@ -106,14 +112,14 @@ def visorReceta(recetaId):
     receta = Receta.query.filter_by(id=recetaId).first()
     ingredienteslista = Ingrediente.query.filter_by(recetaid=recetaId).all()
     return render_template('visorReceta.html',receta=receta,ingredientes=ingredienteslista,idusuarioLogeado=int(session['idusuario']))
-    ### No puede dar me gustaa su propia receta, comprueba usuario logeado con el autor de la receta
+    ### No puede dar me gusta a su propia receta, comprueba usuario logeado con el autor de la receta
 
 @app.route('/meGustaReceta/<int:recetaId>')
 def meGustaReceta(recetaId):
     receta = Receta.query.filter_by(id=recetaId).first()
     receta.cantidadmegusta += 1 ### Actualiza
     db.session.commit()
-    return render_template('meGustaReceta.html',usuarioLogeado=Usuario.query.filter_by(id=int(session['idusuario'])).first(),recetaActual=receta)
+    return render_template('/meGustaReceta.html',usuarioLogeado=Usuario.query.filter_by(id=int(session['idusuario'])).first(),recetaActual=receta)
 
 if __name__ == '__main__':
     db.create_all()
