@@ -17,7 +17,7 @@
         <tbody>
             {% for receta in recetas %}
             <tr>
-                <td>{{ receta.nombre }}</td>
+                <td><a href="visorReceta/{{ receta.id }}">{{ receta.nombre }}</a></td>
                 <td>{{ receta.tiempo }}</td>
             </tr>
             {% endfor %}

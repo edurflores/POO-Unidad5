@@ -6,20 +6,12 @@
     </head>
     <body>
         <h1>Visor de receta</h1>
-        <table>
-            <tr>
-                <th>Nombre de receta</th>
-                <th>Usuario</th>
-                <th>Fecha</th>
-                <th>Me Gusta</th>
-            </tr>
-            <tr>
-                <th>{{ receta.nombre }}</th>
-                <th>{{ receta.usuario.nombre }}</th>
-                <th>{{ receta.fecha }}</th>
-                <th>{{ receta.cantidadmegusta }}</th>
-            </tr>
-        </table>
+        <div>
+            Nombre de receta: {{ receta.nombre }}<br>
+            Usuario: {{ receta.usuario.nombre }}<br>
+            Fecha: {{ receta.fecha }}<br>
+            Me Gusta: {{ receta.cantidadmegusta }}<br>
+        </div>
         <h2>Elaboracion</h2>
         <div>
             {{ receta.elaboracion }}
@@ -35,8 +27,19 @@
                 </tr>
             </thead>
             <tbody>
-                
+                {% for ingrediente in ingredientes %}
+                <tr>
+                    <th>{{ ingrediente.nombre }}</th>
+                    <th>{{ ingrediente.cantidad }}</th>
+                    <th>{{ ingrediente.unidad }}</th>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
+        {% if idusuarioLogeado != receta.usuario.id %}
+            <a href="/meGustaReceta/{{ receta.id }}">Me Gusta</a>
+            {% else %}
+            <div>No puedes dar me gusta a tu propia receta</div>
+        {% endif %}
     </body>
 </html>
